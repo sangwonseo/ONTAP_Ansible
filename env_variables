@@ -4,9 +4,11 @@ netapp_cluster_username: admin
 flex_clone:
   flex_clone_2:
     source_volume_name: SLNA_vol_01
-    vserver_name: cloud_workshop 
+    vserver_name: cloud_workshop
+    source_snapshot_name: SLNA_vol_snapshot 
     flex_clone_name: SLNA_vol_02
   flex_clone_3:
     source_volume_name: SLNA_vol_01
     vserver_name: cloud_workshop 
+    source_snapshot_name: SLNA_vol_snapshot 
     flex_clone_name: SLNA_vol_03
