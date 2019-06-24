@@ -14,4 +14,4 @@
        volume: "{{ flex_clone_name }}"
        space_reserve: none
        parent_snapshot: "{{source_snapshot_name }}"
-       junction_path: /"{{ flex_clone_name }}"
+      # junction_path: /"{{ flex_clone_name }}"
