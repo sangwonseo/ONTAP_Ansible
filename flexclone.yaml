@@ -1,5 +1,5 @@
 ---
-- hosts: OnPremise_FAS
+- hosts: localhost
   gather_facts: no
   connection: local
   vars_files:
