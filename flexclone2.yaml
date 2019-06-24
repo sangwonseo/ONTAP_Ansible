@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  gather_facts: no
+  connection: local
+  vars_files:
+  - env_variables  
+  tasks:
+   - name: create volume clone
+     na_ontap_volume_clone:
+       state: present
+       hostname: "{{ netapp_cluster_name }}"
+       username: "{{ netapp_cluster_username }}"
+       password: "{{ netapp_cluster_password }}"
+       vserver: "{{ item.value.vserver_name }}"
+       parent_volume: "{{ source_volume_name }}"
+       volume: "{{ flex_clone_name }}"
+       space_reserve: none
+       parent_snapshot: "{{source_snapshot_name }}"
+       junction_path: "/{{ flex_clone_name }}"    
