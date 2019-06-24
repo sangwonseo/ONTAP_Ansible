@@ -1,9 +1,7 @@
 ---
 - hosts: localhost
   gather_facts: no
-  connection: local
-  vars_files:
-  - env_variables  
+  connection: local 
   tasks:
    - name: create volume clone
      na_ontap_volume_clone:
