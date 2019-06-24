@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: OnPremise_FAS
   gather_facts: no
   connection: local
   vars_files:
@@ -15,5 +15,5 @@
        parent_volume: "{{ item.value.source_volume_name }}"
        volume: "{{ item.value.flex_clone_name }}"
        space_reserve: none
-      # junction_path: "/{{ item.value.flex_clone_name }}"    
+       junction_path: "/{{ item.value.flex_clone_name }}"    
      with_dict: "{{ flex_clone }}"
