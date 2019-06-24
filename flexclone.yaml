@@ -2,19 +2,18 @@
   hosts: localhost
   gather_facts: no
   connection: local
-  vars:
-    login: &login
-      hostname: "{{_netapp_cluster_name }}"
-      username: "{{ netapp_cluster_username }}"
-      password: "{{ netapp_cluster_password }}"
+  vars_files:
+  - env_variables  
   tasks:
    - name: create volume clone
      na_ontap_volume_clone:
        state: present
-       vserver: "{{ item.value.netapp_vserver_name }}"
+       hostname: "{{ netapp_cluster_name }}"
+       username: "{{ netapp_cluster_username }}"
+       password: "{{ netapp_cluster_password }}"
+       vserver: "{{ item.value.vserver_name }}"
        parent_volume: "{{ item.value.source_volume_name }}"
-       volume: "{{ item.value.flex_volume_name }}"
+       volume: "{{ item.value.flex_clone_name }}"
        space_reserve: none
-       junction_path: /"{{ item.value.flex_volume_name }}"    
-        <<: *login
+       junction_path: /"{{ item.value.flex_clone_name }}"    
       with_dict: '{{ flex_clone }}'
