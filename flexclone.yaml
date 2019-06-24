@@ -4,22 +4,17 @@
   connection: local
   vars:
     login: &login
-      hostname: "{{ source_netapp_cluster_name }}"
-      username: "{{ source_netapp_cluster_username }}"
-      password: "{{ source_netapp_cluster_password }}"
+      hostname: "{{_netapp_cluster_name }}"
+      username: "{{ netapp_cluster_username }}"
+      password: "{{ netapp_cluster_password }}"
   tasks:
-    - name: Create FlexVol 
-      na_ontap_volume:
-        state: present
-        type: rw
-        name: "{{ item.value.source_netapp_volume_name }}"
-        is_infinite: False
-        aggregate_name: "{{ item.value.source_netapp_data_aggregate_1 }}"
-        size: "{{ item.value.source_netapp_data_volume_size_gb }}"
-        size_unit: gb
-        space_guarantee: none
-        policy: default
-        percent_snapshot_space: 60
-        vserver: "{{ item.value.source_netapp_vserver_name }}"
+   - name: create volume clone
+     na_ontap_volume_clone:
+       state: present
+       vserver: "{{ item.value.netapp_vserver_name }}"
+       parent_volume: "{{ item.value.source_volume_name }}"
+       volume: "{{ item.value.flex_volume_name }}"
+       space_reserve: none
+       junction_path: /"{{ item.value.flex_volume_name }}"    
         <<: *login
-      with_dict: '{{ flex_vol }}'
+      with_dict: '{{ flex_clone }}'
