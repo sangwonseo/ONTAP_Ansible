@@ -16,4 +16,4 @@
        volume: "{{ item.value.flex_clone_name }}"
        space_reserve: none
        junction_path: /"{{ item.value.flex_clone_name }}"    
-      with_dict: "{{ flex_clone }}"
+     with_dict: "{{ flex_clone }}"
