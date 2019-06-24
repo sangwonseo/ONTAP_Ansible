@@ -1,5 +1,5 @@
-- name: Sample Playbook
-  hosts: localhost
+---
+- hosts: localhost
   gather_facts: no
   connection: local
   vars_files:
