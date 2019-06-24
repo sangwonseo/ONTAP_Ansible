@@ -9,7 +9,7 @@
        hostname: "{{ netapp_cluster_name }}"
        username: "{{ netapp_cluster_username }}"
        password: "{{ netapp_cluster_password }}"
-       vserver: "{{ item.value.vserver_name }}"
+       vserver: "{{ vserver_name }}"
        parent_volume: "{{ source_volume_name }}"
        volume: "{{ flex_clone_name }}"
        space_reserve: none
